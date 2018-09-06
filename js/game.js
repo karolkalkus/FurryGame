@@ -7,6 +7,7 @@ function Game() {
     this.coin = new Coin();
     this.score = 0;
     var self = this;
+    this.end = false;
 
     this.startGame = function () {
         this.idSetInterval = setInterval(function () {
@@ -41,13 +42,15 @@ function Game() {
             this.furry.y = this.furry.y + 1;
         }
         this.gameOver();
-        this.showFurry();
-        this.checkCoinCollision();
-        // this.gameOver();
+        if (this.end === false) {
+            this.showFurry();
+            this.checkCoinCollision();
+        }
     };
 
     this.hideVisibleFurry = function() {
-        document.querySelector(".furry").classList.remove('furry');
+        var hiddenFurry = document.querySelector(".furry");
+        hiddenFurry.classList.remove('furry');
     };
 
 
@@ -77,31 +80,32 @@ function Game() {
         }
     };
 
-    // this.gameOver = function() {
+    // this.gameOver = function(){
     //     if (this.furry.x < 0 || this.furry.x > 9 || this.furry.y < 0 || this.furry.y > 9){
-    //         clearInterval(this.idSetInterval);
-    //         var over = document.querySelector("#over");
-    //         var gameO= document.createElement('gameover');
-    //         over.appendChild(gameO);
-    //         gameO.innerHTml = this.score;
-    //         document.querySelector('#over gameO').innerHTML = this.score;
-    //         console.log("Koniec gry!");
-    //         this.hideVisibleFurry();
+    //         this.end = true;
+    //         return window.clearInterval(this.idSetInterval);
+    //             this.hideVisibleFurry();
+    //                  console.log("Koniec gry!");
     //
+    //             var over = document.getElementById('gameover');
+    //             over.classList.remove('invisible');
+    //             var score = document.querySelector('.endScore');
+    //             var strong = document.querySelector('strong');
+    //             score.textContent = strong.textContent;
     //     }
     // }
 
-    this.gameOver = function(){
+     this.gameOver = function(){
         if (this.furry.x < 0 || this.furry.x > 9 || this.furry.y < 0 || this.furry.y > 9){
             clearInterval(this.idSetInterval);
-            var over = document.getElementById('over');
-            over.classList.remove('invisible');
-            var score = document.querySelector('.endScore');
-            var strong = document.querySelector('strong');
-            score.textContent = strong.textContent;
-            this.hideVisibleFurry();
+        var over = document.getElementById('gameover');
+        over.classList.remove('invisible');
+        var score = document.querySelector('.endScore');
+        var strong = document.querySelector('strong');
+        score.textContent = strong.textContent;
+        this.hideVisibleFurry();
         }
-    }
+     }
 
 }
 module.exports = Game;
