@@ -98,12 +98,12 @@ function Game() {
      this.gameOver = function(){
         if (this.furry.x < 0 || this.furry.x > 9 || this.furry.y < 0 || this.furry.y > 9){
             clearInterval(this.idSetInterval);
-        var over = document.getElementById('gameover');
-        over.classList.remove('invisible');
-        var score = document.querySelector('.endScore');
-        var strong = document.querySelector('strong');
-        score.textContent = strong.textContent;
-        this.hideVisibleFurry();
+            var over = document.getElementById('gameover');
+            over.classList.remove('invisible');
+            var score = document.querySelector('.endScore');
+            var strong = document.querySelector('strong');
+            score.textContent = strong.textContent;
+            this.hideVisibleFurry();
         }
      }
 
